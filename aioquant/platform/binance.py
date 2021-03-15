@@ -41,9 +41,9 @@ class BinanceRestAPI:
         secret_key: Account's SECRET KEY.
     """
 
-    def __init__(self, access_key: str, secret_key: str, host=None):
+    def __init__(self, host, access_key: str, secret_key: str):
         """Initialize REST API client."""
-        self._host = host or "https://api.binance.com"
+        self._host = host
         self._access_key = access_key
         self._secret_key = secret_key
 
