@@ -41,9 +41,9 @@ class BinanceRestAPI:
         secret_key: Account's SECRET KEY.
     """
 
-    def __init__(self, host, access_key, secret_key):
+    def __init__(self, access_key: str, secret_key: str, host=None):
         """Initialize REST API client."""
-        self._host = host
+        self._host = host or "https://api.binance.com"
         self._access_key = access_key
         self._secret_key = secret_key
 
@@ -521,7 +521,7 @@ class BinanceTrade:
             self._orders[order_id] = order
             SingleTask.run(self._order_update_callback, copy.copy(order))
 
-        SingleTask.run(self._init_callback, True, None)
+        SingleTask.run(self._init_callback, True)
 
     async def create_order(self, action, price, quantity, *args, **kwargs):
         """Create an order.
